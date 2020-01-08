@@ -4,7 +4,7 @@ $portrait1 = array('name'=>'Victor', 'firstname'=>'Hugo', 'portrait'=>'http://up
 $portrait2 = array('name'=>'Jean', 'firstname'=>'de La Fontaine', 'portrait'=>'http://upload.wikimedia.org/wikipedia/commons/e/e1/La_Fontaine_par_Rigaud.jpg');
 $portrait3 = array('name'=>'Pierre', 'firstname'=>'Corneille', 'portrait'=>'http://upload.wikimedia.org/wikipedia/commons/2/2a/Pierre_Corneille_2.jpg');
 $portrait4 = array('name'=>'Jean', 'firstname'=>'Racine', 'portrait'=>'http://upload.wikimedia.org/wikipedia/commons/d/d5/Jean_racine.jpg');
-// Texte associé aux personnes des tableaux
+// Texte associé aux personnes des tableaux (facultatif)
 $victorBio = 'Victor Hugo, né le 26 février 1802 à Besançon et mort le 22 mai 1885 à Paris, est un poète lyrique ou engagé; romancier du peuple qui rencontre un grand succès avec Notre-Dame de Paris (1831) ainsi que Les Misérables (1862).';
 $jeanLfBio = 'Jean de La Fontaine est un poète français né à Château-Thierry en 1621 et mort à Paris en 1695. Il est surtout connu pour être l\'auteur de ses très célèbres Fables.';
 $pierreBio = 'Corneille est né à Rouen le 6 juin 1606 dans une famille bourgeoise. Il fait de brillantes études au collège des Jésuites de Rouen (de 1615 à 1622) et devient avocat en 1624.';
@@ -22,22 +22,21 @@ $portraits = [$portrait1, $portrait2, $portrait3, $portrait4]; ?>
 </head>
 <body class='container-fluid d-flex flex-wrap pt-5'>
   <?php
-  // Pour chaque array du array principale
+  // Pour chaque tableau du tableau principal
   foreach($portraits as $array){
     // Pour chaque clef associée à une valeur
     foreach($array as $key => $value){
-      // Récupération des informations pour création d'une carte de présentation
-      if($key == 'portrait'){ $imageURL = $value; }
-      elseif ($key == 'firstname') { $lastName = $value; }
-      else { $firstName = $value; }
+      // Récupération des informations pour la création d'une carte
+      if($key === 'portrait'){ $imageURL = $value; } // URL
+      elseif ($key === 'firstname') { $lastName = $value; } // Nom
+      else { $firstName = $value; } // Prénom
     }
-    // Association de la personne avec sa description
+    // Association de la personne avec sa description (facultatif)
     if (strlen($lastName) < 5){ $description = $victorBio; }
     elseif (strlen($lastName) < 7){ $description = $jeanRBio; }
     elseif (strlen($lastName) < 10){ $description = $pierreBio; }
     else {$description = $jeanLfBio; }
-    ?>
-    <!-- Création d'une carte pour chaque sous-tableau -->
+    // Création d'une carte pour chaque sous-tableau ?>
     <div class="card col-md-6 col-sm-12 mx-auto mb-3">
       <div class="row no-gutters">
         <div class="col-md-4 d-flex">
@@ -51,9 +50,11 @@ $portraits = [$portrait1, $portrait2, $portrait3, $portrait4]; ?>
         </div>
       </div>
     </div>
-  <?php } ?>
+  <?php // Fin de la boucle principale
+  } ?>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+  <script src='assets/js/script.js'></script>
 </body>
 </html>
